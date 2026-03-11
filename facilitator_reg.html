@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilitator Registration | goAPPs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #062c1e;
+            --card: #0a3d2a;
+            --text: #ffffff;
+            --primary: #00d28d;
+            --primary-glow: rgba(0, 210, 141, 0.3);
+            --input-bg: #0d4d36;
+            --success: #10b981;
+            --danger: #ff4d4d;
+            --white: #ffffff;
+            --gray: #a0aec0;
+            --overlay: rgba(0,0,0,0.8);
+            --primary-gradient: linear-gradient(135deg, var(--primary) 0%, #4b44e0 100%);
+        }
+
+        body { margin:0; font-family:'Inter',sans-serif; background-color:var(--bg); color:var(--text); display:flex; justify-content:center; align-items:center; min-height:100vh; }
+        .container { width:375px; background:var(--card); border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+        h2 { text-align:center; margin-bottom:20px; }
+        .connect-input { width: 100%; padding: 12px; border-radius: 10px; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.85rem; margin-top: 5px; box-sizing: border-box; outline: none; }
+        .btn-action { width: 100%; padding: 14px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; margin-top: 20px; transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; background: var(--primary); color: var(--bg); }
+        .btn-action:hover { opacity:0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Become a Facilitator</h2>
+        <form id="fac-form" onsubmit="submitFacilitator(event)">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" class="connect-input" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" class="connect-input" required>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" class="connect-input" required>
+            <label for="org">Organization</label>
+            <input type="text" id="org" class="connect-input" required>
+            <label for="school">Current School</label>
+            <input type="text" id="school" class="connect-input" required>
+            <label for="subjects">Subjects of Interest</label>
+            <select id="subjects" class="connect-input" multiple size="4" required>
+                <option value="Mathematics">Mathematics</option>
+                <option value="English Language">English Language</option>
+                <option value="Biology">Biology</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Physics">Physics</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Economics">Economics</option>
+                <option value="Government">Government</option>
+                <option value="History">History</option>
+                <option value="Geography">Geography</option>
+                <!-- add more as needed -->
+            </select>
+            <label for="country">Country</label>
+            <input type="text" id="country" class="connect-input" required>
+            <label for="state">State</label>
+            <input type="text" id="state" class="connect-input" required>
+            <button type="submit" class="btn-action">Register</button>
+        </form>
+        <button id="login-btn" class="btn-action" style="margin-top:10px;background:var(--gray);color:var(--bg);" onclick="window.location.href='https://wa.me/2348157505037'">Login</button>
+    </div>
+
+    <script>
+        function submitFacilitator(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const org = document.getElementById('org').value.trim();
+            const school = document.getElementById('school').value.trim();
+            const country = document.getElementById('country').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const subjectsEl = document.getElementById('subjects');
+            const selected = Array.from(subjectsEl.selectedOptions).map(o=>o.value).join(', ');
+            const message = `New Facilitator Application:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nOrganization: ${org}\nSchool: ${school}\nSubjects: ${selected}\nCountry: ${country}\nState: ${state}\n\nTrack my Facilitator Application`;
+            const url = `https://wa.me/2348157505037?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
